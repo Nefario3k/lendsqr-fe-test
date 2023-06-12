@@ -1,9 +1,39 @@
 @media (max-width: 768px) {
-    section.auth {
-        .row {
-            div.auth__content {
-                .content__login {
-                    text-align: center;
+    section {
+        &.auth {
+            .row {
+                div.auth__content {
+                    .content__login {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        &.pageContainer {
+            nav.navigation {
+                padding: 12px;
+                height: 7rem;
+                .nav__left {
+                    .left__content {
+                        img {
+                            max-width: 6.5rem;
+                        }
+                    }
+                }
+                .nav__right {
+                    button {
+                        &.right__dropDown {
+                            .dropDown__avatar {
+                                width: 3.5rem;
+                                height: 3.5rem;
+                            }
+                            &:is(:hover, :focus) {
+                                .dropDown__avatar {
+                                    box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -116,3 +116,174 @@ section.auth {
         }
     }
 }
+
+// default layout styles
+section.pageContainer {
+    background-color: $bodyColor;
+    height: 100vh;
+    overflow: hidden;
+    nav.navigation {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        grid-gap: 17px;
+        height: 10rem;
+        background-color: #fff;
+        box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
+        padding: 12px 30px;
+        & > * {
+            flex: auto;
+        }
+        .nav__left {
+            max-width: 50%;
+            .left__content {
+                grid-gap: 10px;
+                img {
+                    max-width: 13.5rem;
+                }
+                .hamburger {
+                    cursor: pointer;
+                    svg {
+                        margin: 0;
+                        margin-top: -2px;
+                    }
+                }
+            }
+        }
+        .left__search {
+            height: 4rem;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 40rem;
+            & > * {
+                height: 100%;
+                border-radius: inherit;
+            }
+            input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-right: none;
+            }
+            button {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                outline: none;
+                border: none;
+                width: 5.6rem;
+                padding: 6px;
+                background-color: $primaryColor;
+                svg {
+                    display: inline;
+                }
+            }
+        }
+        .nav__right {
+            grid-gap: 33px;
+            a.right__docs {
+                text-decoration: underline !important;
+                color: $secondaryColor;
+                text-transform: capitalize;
+                font-weight: 400;
+                font-size: 1.6rem;
+            }
+            button {
+                outline: none;
+                border: none;
+                background: transparent;
+                &,
+                & * {
+                    transition: all 0.3s ease-in-out;
+                }
+                &.right__notification {
+                    margin-right: 12px;
+                    &:is(:hover, :focus) {
+                        svg {
+                            path {
+                                stroke: $subtitle;
+                            }
+                        }
+                    }
+                }
+                &.right__dropDown {
+                    grid-gap: 10px;
+                    .dropDown__avatar {
+                        width: 4.8rem;
+                        height: 4.8rem;
+                        border-radius: 50%;
+                        img {
+                            border-radius: inherit;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: top center;
+                        }
+                    }
+                    p {
+                        margin: 0;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        width: 100%;
+                        max-width: 5.8rem;
+                        font-weight: 500;
+                        font-size: 1.6rem;
+                        color: $secondaryColor;
+                    }
+                }
+            }
+        }
+    }
+    menu.panel {
+        float: left;
+        height: calc(100% - 10rem);
+        padding-block: 41px;
+        background-color: #fff;
+        width: 100%;
+        max-width: 28.3rem;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.04);
+        overflow-x: hidden;
+        overflow-y: auto;
+        & > * {
+            padding-inline: 30px;
+        }
+        & * {
+            transition: all 0.3s ease-in-out;
+            color: $subtitle;
+        }
+        p.panel__tagLine {
+            font-weight: 500;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding: 0;
+            li {
+                list-style-type: none;
+                margin-bottom: 5px;
+                a {
+                    grid-gap: 10px;
+                    height: 4rem;
+                    padding-inline: 30px;
+                    border-left: 4px solid transparent;
+                    img {
+                        width: 2rem;
+                        object-fit: cover;
+                    }
+                    span {
+                        font-weight: 400;
+                        font-size: 1.6rem;
+                        text-transform: capitalize;
+                    }
+                    &:is(:hover, :focus) {
+                        background: $primaryColorLight;
+                        border-color: $primaryColor;
+                        span {
+                            color: $secondaryColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

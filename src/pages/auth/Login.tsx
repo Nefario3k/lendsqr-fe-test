@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import LoginSvg from "../../assets/svg/login.svg";
 import LogoSvg from "../../assets/svg/sizedLogo.svg";
 const Login = () => {
     return (
         <section className="auth">
             <div className="row">
-                <div className="col-12 col-md-6 auth__image relative justify-center align-items-center d-none d-md-flex">
+                <div className="col-12 col-md-6 auth__image relative justify-content-center align-items-center d-none d-md-flex">
                     <aside>
                         <img src={LoginSvg} alt="lendsqr login" />
                     </aside>
@@ -13,7 +14,7 @@ const Login = () => {
                         <img src={LogoSvg} alt="Logo" />
                     </div>
                 </div>
-                <div className="col-12 col-md-6 auth__content d-flex justify-center align-items-center">
+                <div className="col-12 col-md-6 auth__content d-flex justify-content-center align-items-center">
                     <form className="content__login">
                         <div className=" d-md-none d-block image__logo">
                             <img src={LogoSvg} alt="Logo" />
@@ -38,7 +39,7 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <a href="/">Forgot PASSWORD?</a>
+                        <Link to="/">Forgot PASSWORD?</Link>
                         <button className="login__submit d-flex justify-center align-items-center text-center">
                             <span>log in</span>
                         </button>

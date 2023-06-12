@@ -2,6 +2,7 @@
 @import url("https://fonts.cdnfonts.com/css/avenir-next-lt-pro");
 // colors
 $primaryColor: #39cdcc;
+$primaryColorLight: #39cdcd23;
 $secondaryColor: #213f7d;
 $bodyColor: #fbfbfb;
 $subtitle: #545f7d;
@@ -116,7 +117,8 @@ input {
     padding: 0 15px;
     width: 100%;
     background-color: transparent;
-    font-size: 1.4rem;
+    font-size: 1.6rem !important;
+    font-weight: 500;
     height: 4rem;
     color: $secondaryColor;
     -moz-appearance: none;
