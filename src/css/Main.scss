@@ -243,6 +243,9 @@ section.pageContainer {
         box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.04);
         overflow-x: hidden;
         overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 0 !important;
+        }
         & > * {
             padding-inline: 30px;
         }
@@ -255,12 +258,18 @@ section.pageContainer {
             font-size: 1.2rem;
             text-transform: uppercase;
             margin-bottom: 10px;
+            &.version {
+                margin-bottom: 0;
+                color: $secondaryColor;
+                font-size: 1.2rem;
+            }
         }
         ul {
             padding: 0;
+            margin-bottom: 40px;
             li {
                 list-style-type: none;
-                margin-bottom: 5px;
+                margin-bottom: 10px;
                 a {
                     grid-gap: 10px;
                     height: 4rem;
@@ -284,6 +293,13 @@ section.pageContainer {
                     }
                 }
             }
+            &.settings {
+                margin-bottom: 71px;
+            }
+        }
+        .divider {
+            border-color: $secondaryColor;
+            padding: 0;
         }
     }
 }

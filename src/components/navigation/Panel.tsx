@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Pathlist from "../navigation/PathList";
+import logout from "../../assets/svg/icons/logout.svg";
 const Panel = () => {
     console.log(Pathlist);
     return (
@@ -10,7 +11,7 @@ const Panel = () => {
                         <p className="panel__tagLine" key={key}>
                             {key}
                         </p>
-                        <ul>
+                        <ul className={key}>
                             {value.map((element, id) => {
                                 return (
                                     <>
@@ -33,6 +34,16 @@ const Panel = () => {
                     </>
                 );
             })}
+            <hr className="divider" />
+            <ul className="logout">
+                <li>
+                    <Link className="d-flex align-items-center w-100" to="/">
+                        <img src={logout} alt="logout" />
+                        <span>logout</span>
+                    </Link>
+                </li>
+            </ul>
+            <p className="panel__tagLine version">v1.2.0</p>
         </menu>
     );
 };
