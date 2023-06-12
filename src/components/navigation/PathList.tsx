@@ -22,6 +22,14 @@ import badge from "../../assets/svg/icons/badge.svg";
 import clipboard from "../../assets/svg/icons/clipboard.svg";
 import wheel from "../../assets/svg/icons/wheel.svg";
 let PathList = {
+    dropDown: [{
+        title: "Switch Organization", icon: briefcase, path: '', listItems: [
+
+        ],
+    }],
+    dashboard: [{
+        title: "dashboard", icon: home, path: "/dashboard",
+    }],
     customers: [
         { title: "users", icon: users, path: "/dashboard/users" },
         { title: "Guarantors", icon: people, path: "/dashboard/guarantors" },

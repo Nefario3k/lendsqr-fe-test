@@ -5,10 +5,12 @@ const Default = () => {
     return (
         <section className="pageContainer">
             <Bar />
-            <Panel />
-            <div className="page__content">
-                <Outlet />
-            </div>
+            <section className="d-flex h-100">
+                <Panel />
+                <main className="container page__content">
+                    <Outlet />
+                </main>
+            </section>
         </section>
     );
 };

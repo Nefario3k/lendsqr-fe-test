@@ -26,8 +26,6 @@ html {
 
 body {
     font-size: 1.6rem;
-    max-width: 3500px;
-    margin: 0 auto;
 }
 
 a {
@@ -167,4 +165,64 @@ textarea {
 
 .absolute {
     position: absolute;
+}
+
+.transIn {
+    animation: transIn 0.3s ease-in-out;
+}
+
+.transRight {
+    animation: transRight 0.3s ease-in-out;
+}
+
+.transleft {
+    animation: transRight 0.3s ease-in-out;
+}
+
+@keyframes transIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes transOut {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes transleft {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes transright {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
