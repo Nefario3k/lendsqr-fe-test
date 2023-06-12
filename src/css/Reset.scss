@@ -1,0 +1,169 @@
+// declare variables
+@import url("https://fonts.cdnfonts.com/css/avenir-next-lt-pro");
+// colors
+$primaryColor: #39cdcc;
+$secondaryColor: #213f7d;
+$bodyColor: #fbfbfb;
+$subtitle: #545f7d;
+// borders
+$borderColor: #545f7d26;
+
+:root {
+    font-size: 62.5%;
+}
+* {
+    font-family: "Avenir Next", Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    object-fit: contain;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 1.6rem;
+    max-width: 3500px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none !important;
+    // &:is(:hover, :focus, :active) {
+    //     text-decoration: none;
+    // }
+}
+
+input,
+textarea,
+button,
+select {
+    font: inherit;
+    caret-color: $primaryColor;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+}
+
+/* for other browsers  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* for firefox  */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+}
+
+::placeholder {
+    text-transform: capitalize;
+    color: $subtitle;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+::-moz-selection {
+    /* Code for Firefox */
+    color: $secondaryColor;
+    background: $primaryColor;
+}
+
+::selection {
+    color: $secondaryColor;
+    background: $primaryColor;
+}
+
+::-webkit-scrollbar {
+    width: 10px !important;
+    height: 10px !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: none;
+    background: $bodyColor;
+    /* border-radius: 10px; */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $primaryColor;
+    /* border-radius: 10px; */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $primaryColor;
+    transition: all 0.5s linear;
+}
+
+input {
+    padding: 0 15px;
+    width: 100%;
+    background-color: transparent;
+    font-size: 1.4rem;
+    height: 4rem;
+    color: $secondaryColor;
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    appearance: none;
+    outline: none;
+    border: 1px solid $borderColor;
+    border-radius: 0;
+    &:focus {
+        -moz-appearance: none;
+        /* Firefox */
+        -webkit-appearance: none;
+        /* Safari and Chrome */
+        appearance: none;
+        outline: none;
+        border-color: $primaryColor;
+    }
+}
+
+textarea {
+    color: $secondaryColor;
+    padding: 10px 15px;
+    width: 100%;
+    background-color: transparent;
+    font-size: 1.4rem;
+    outline: none;
+    border: 1px solid $borderColor;
+    border-radius: 0;
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    appearance: none;
+    &:focus {
+        outline: none;
+        border-color: $primaryColor;
+    }
+}
+
+// reusable styles
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
