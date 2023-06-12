@@ -15,7 +15,7 @@ const Login = () => {
                 </div>
                 <div className="col-12 col-md-6 auth__content d-flex justify-center align-items-center">
                     <form className="content__login">
-                        <div className="absolute d-md-none d-block image__logo">
+                        <div className=" d-md-none d-block image__logo">
                             <img src={LogoSvg} alt="Logo" />
                         </div>
                         <header>
