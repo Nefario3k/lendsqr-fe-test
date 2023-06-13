@@ -6,9 +6,9 @@ import {
     Navigate,
 } from "react-router-dom";
 // layouts
-import DefaultLayout from "./pages/layouts/Default";
-import EmptyLayout from "./pages/layouts/Empty";
-import ErrorLayout from "./pages/layouts/Error";
+import DefaultLayout from "./layouts/Default";
+import EmptyLayout from "./layouts/Empty";
+import ErrorLayout from "./layouts/Error";
 
 // pages
 import Dashboard from "./pages/Dashboard";
