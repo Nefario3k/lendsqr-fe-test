@@ -193,7 +193,6 @@ const Table = () => {
                         <tr>{thead}</tr>
                     </thead>
                     <tbody>{tbody}</tbody>
-                    <tfoot></tfoot>
                 </table>
             </div>
             <div className="pagination">
