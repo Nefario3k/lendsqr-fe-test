@@ -133,6 +133,7 @@ nav.navigation {
     background-color: #fff;
     box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
     padding: 12px 30px;
+    transition: all 0.3s ease-in-out;
     & > * {
         flex: auto;
     }
@@ -234,14 +235,19 @@ nav.navigation {
             }
         }
     }
+    &.shadowApp {
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+            0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
+    }
 }
 
 // panel
-.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
-    .css-1v8x7dw::-webkit-scrollbar {
-        width: 0 !important;
-    }
+// .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+.css-1v8x7dw::-webkit-scrollbar {
+    width: 0 !important;
 }
+// }
 
 menu.panel {
     // height: 100vh;
@@ -355,15 +361,18 @@ menu.panel {
 
 // default main wrapper style
 main.page__content {
-    padding: 60px;
+    padding-block: 60px;
     // padding-left: calc(28.3rem + 60px);
     max-width: 2300px;
+    overflow: hidden;
 }
 
 // page content
 .content {
     height: 100%;
-    width: 100%;
+    overflow: hidden;
+    max-width: calc(100vw - 40.5rem);
+    margin: 0 auto;
     h3.title {
         font-weight: 500;
         font-size: 2.4rem;
@@ -412,11 +421,16 @@ main.page__content {
 }
 
 // filter table
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
 .table__card {
     padding: 30px;
     background: #fff;
-    border: 1px solid rgba(33, 63, 125, 0.06);
-    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    // border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     margin-top: 40px;
     width: 100%;
@@ -431,14 +445,15 @@ main.page__content {
             tr {
                 th {
                     padding-bottom: 37px;
+                    border: none;
                     & > div {
                         display: flex;
                         flex-wrap: wrap;
                         width: 100%;
                         align-items: center;
                         grid-gap: 10px;
-                        padding-right: 10px;
                         span {
+                            color: $subtitle;
                             font-size: 1.2rem;
                             font-weight: 600;
                             text-transform: uppercase;
@@ -465,6 +480,7 @@ main.page__content {
                 td {
                     font-size: 1.4rem;
                     font-weight: 400;
+                    color: $subtitle;
                     a {
                         color: $primaryColor;
                         font-weight: 500;

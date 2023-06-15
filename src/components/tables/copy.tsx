@@ -132,7 +132,7 @@ const USERTABLE = () => {
     const thead = data().headers.map((element, id) => {
         return (
             <>
-                <TableCell key={id + 233223233}>
+                <th key={id + 233223233}>
                     <div>
                         <span>{element.name}</span>
                         <button className="filter">
@@ -150,7 +150,7 @@ const USERTABLE = () => {
                             </svg>
                         </button>
                     </div>
-                </TableCell>
+                </th>
             </>
         );
     });
@@ -159,25 +159,25 @@ const USERTABLE = () => {
     const tbody = users.slice(lowRange, highRange).map((element) => {
         return (
             <>
-                <TableRow key={element.id + 233424}>
+                <tr key={element.id + 233424}>
                     {/* organization name  */}
-                    <TableCell>{element.orgName}</TableCell>
+                    <td>{element.orgName}</td>
                     {/* username  */}
-                    <TableCell>{element.userName}</TableCell>
+                    <td>{element.userName}</td>
                     {/* email  */}
-                    <TableCell>
+                    <td>
                         <a href={`mailto:${element.email}`}>{element.email}</a>
-                    </TableCell>
+                    </td>
                     {/* phoneNumber */}
-                    <TableCell>
+                    <td>
                         <a href={`tel:${element.phoneNumber}`}>
                             {element.phoneNumber}
                         </a>
-                    </TableCell>
+                    </td>
                     {/* date  */}
-                    <TableCell>{setDate(element.createdAt)}</TableCell>
+                    <td>{setDate(element.createdAt)}</td>
                     {/* status  */}
-                    <TableCell
+                    <td
                         className={`chip ${
                             element.status ? element.status : "inactive"
                         }`}
@@ -185,14 +185,14 @@ const USERTABLE = () => {
                         <span>
                             {element.status ? element.status : "inactive"}
                         </span>
-                    </TableCell>
+                    </td>
                     {/* action button  */}
-                    <TableCell>
+                    <td>
                         <div className="table__action">
                             <img src={action} alt="action" />
                         </div>
-                    </TableCell>
-                </TableRow>
+                    </td>
+                </tr>
             </>
         );
     });
@@ -201,14 +201,12 @@ const USERTABLE = () => {
     return (
         <>
             <div className="table__card">
-                <TableContainer component={Paper}>
-                    <Table className="filterTable">
-                        <TableHead>
-                            <TableRow>{thead}</TableRow>
-                        </TableHead>
-                        <TableBody>{tbody}</TableBody>
-                    </Table>
-                </TableContainer>
+                <table className="filterTable">
+                    <thead>
+                        <tr>{thead}</tr>
+                    </thead>
+                    <tbody>{tbody}</tbody>
+                </table>
             </div>
             <div className="pagination">
                 <div className="left">

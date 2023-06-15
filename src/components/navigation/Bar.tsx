@@ -3,7 +3,22 @@ import AppBar from "@mui/material/AppBar";
 import LogoSvg from "../../assets/svg/sizedLogo.svg";
 import TextLogo from "../../assets/svg/textLogo.svg";
 import Avatar from "../../assets/images/temp/avatar.png";
-const Bar = () => {
+import { useState, useEffect } from "react";
+const Bar = (props: any) => {
+    var currentScrollPosition = window.scrollY;
+    const [domHeight, setDomHeight] = useState(currentScrollPosition);
+    const [scrollPosition] = useState(0);
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            var currentScrollPosition = window.scrollY;
+
+            if (currentScrollPosition > scrollPosition && domHeight === 0) {
+                setDomHeight(currentScrollPosition);
+            } else if (currentScrollPosition === scrollPosition) {
+                setDomHeight(currentScrollPosition);
+            }
+        });
+    }, []);
     return (
         <>
             <AppBar
@@ -11,10 +26,14 @@ const Bar = () => {
                 position="fixed"
                 sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
             >
-                <nav className="navigation d-flex align-items-center justify-content-between">
+                <nav
+                    className={`navigation d-flex align-items-center justify-content-between ${
+                        domHeight ? "shadowApp" : ""
+                    }`}
+                >
                     {/* logo and search form  */}
                     <div className="nav__left ">
-                        <div className="left__content w-100 d-none d-md-flex align-items-center justify-content-between">
+                        <div className="left__content desktop w-100 d-none align-items-center justify-content-between">
                             <Link to="/dashboard">
                                 <img src={LogoSvg} alt="Logo" />
                             </Link>
@@ -40,8 +59,11 @@ const Bar = () => {
                                 </button>
                             </form>
                         </div>
-                        <div className="left__content w-100 d-md-none d-flex align-items-center">
-                            <div className="hamburger">
+                        <div className="left__content mobile w-100 d-flex align-items-center">
+                            <div
+                                onClick={props.handleDrawerToggle}
+                                className="hamburger"
+                            >
                                 <svg
                                     width="24"
                                     height="24"
@@ -73,7 +95,7 @@ const Bar = () => {
                     </div>
 
                     {/* mobile input  */}
-                    <form className="left__search d-flex d-md-none align-items-center">
+                    <form className="left__search d-flex mobile align-items-center">
                         <input
                             required
                             type="text"
@@ -97,15 +119,12 @@ const Bar = () => {
 
                     {/* user content contol section  */}
                     <div className="nav__right d-flex align-items-center justify-content-end">
-                        <Link
-                            className="d-none d-md-block right__docs"
-                            to="/dashboard"
-                        >
+                        <Link className="d-none right__docs" to="/dashboard">
                             Docs
                         </Link>
                         <button
                             title="Notifications"
-                            className="d-none d-md-block right__notification"
+                            className="d-none  right__notification"
                         >
                             <svg
                                 width="22"
@@ -126,8 +145,8 @@ const Bar = () => {
                             <div className="dropDown__avatar">
                                 <img src={Avatar} alt="avatar" />
                             </div>
-                            <p className="d-none d-md-block">Adedeji</p>
-                            <div className="d-none d-md-block">
+                            <p className="userName d-none ">Adedeji</p>
+                            <div className="dropArrow d-none ">
                                 <svg
                                     width="8"
                                     height="5"

@@ -1,3 +1,39 @@
+@media (max-width: 959px) {
+    main.page__content {
+        padding-inline: 0;
+    }
+}
+@media (max-width: 950px) {
+    .content {
+        max-width: calc(100vw - 42px);
+        // display: none;
+    }
+    .statsCard {
+        margin: -6px !important;
+        .card__content {
+            padding: 6px !important;
+            & > div {
+                padding: 16px;
+                img {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                }
+                p {
+                    font-size: 1.2rem;
+                }
+                h3 {
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+
+    .table__card {
+        .filterTable {
+            min-width: max-content;
+        }
+    }
+}
 @media (max-width: 768px) {
     section {
         &.auth {
@@ -37,5 +73,8 @@
                 }
             }
         }
+    }
+    nav.navigation {
+        padding: 12px;
     }
 }

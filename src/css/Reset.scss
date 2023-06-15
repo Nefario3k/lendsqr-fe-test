@@ -36,6 +36,11 @@ html {
 body {
     font-size: 1.6rem;
     background-color: $bodyColor !important;
+    padding: 0 !important;
+}
+
+.css-10jggh8-MuiPaper-root-MuiAppBar-root {
+    padding: 0 !important;
 }
 
 a {
@@ -234,5 +239,25 @@ textarea {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+// reset bootstap responsive classes
+
+@media (min-width: 959px) {
+    .left__content.desktop {
+        display: flex !important;
+    }
+
+    .left__content.mobile,
+    .left__search.mobile {
+        display: none !important;
+    }
+
+    .right__docs,
+    .right__notification,
+    .userName,
+    .dropArrow {
+        display: block !important;
     }
 }

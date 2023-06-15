@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import Pathlist from "./PathList";
 import logout from "../../assets/svg/icons/logout.svg";
-const Panel = () => {
+const Panel = (props: any) => {
     const location = useLocation().pathname;
     return (
         <>
@@ -27,6 +27,7 @@ const Panel = () => {
                                         return (
                                             <>
                                                 <li
+                                                    onClick={props.onClose}
                                                     key={
                                                         id + 234 + element.path
                                                     }
