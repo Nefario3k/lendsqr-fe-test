@@ -17,7 +17,8 @@ export default function Default() {
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
-        if (window.innerWidth <= 959) setMobileOpen(!mobileOpen);
+        setMobileOpen(!mobileOpen);
+        //  if (window.innerWidth <= 959)
     };
 
     // mounted once for the sidebar

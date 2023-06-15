@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import action from "../../assets/svg/action.svg";
 import { setDate, sortPagination } from "../../util/User";
@@ -15,12 +15,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+
+// figma icons
+import eye from "../../assets/svg/menu/eye.svg";
+import yeetuser from "../../assets/svg/menu/yeetuser.svg";
+import unyeetuser from "../../assets/svg/menu/unyeetuser.svg";
+import Form from "./TableForm";
 
 const USERTABLE = () => {
-    const [users, setUsers] = useState<IUser[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [users, setUsers] = React.useState<IUser[]>([]);
+    const [loading, setLoading] = React.useState(false);
     const USERPERPAGE = 10;
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = React.useState(1);
     const [lowRange, highRange] = sortPagination(currentPage, USERPERPAGE);
     const handleButtonNavigation = (dir: string) => {
         if (dir === "left") {
@@ -32,8 +40,28 @@ const USERTABLE = () => {
             setCurrentPage((el) => el + 1);
         }
     };
+    // dropdown
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorHeaderEl, setAnchorHeaderEl] =
+        React.useState<null | HTMLElement>(null);
+    const openMenu = Boolean(anchorEl);
+    const openHeader = Boolean(anchorHeaderEl);
+    const handleDropDownClick = (
+        event: React.MouseEvent<HTMLButtonElement>
+    ) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleDropDownClose = () => {
+        setAnchorEl(null);
+    };
+    const handleHeaderClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorHeaderEl(event.currentTarget);
+    };
+    const handleHeaderClose = () => {
+        setAnchorHeaderEl(null);
+    };
 
-    useEffect(() => {
+    React.useEffect(() => {
         const getUsers = async () => {
             setLoading(true);
             fetch(
@@ -57,7 +85,7 @@ const USERTABLE = () => {
         return pageNumbers;
     }
 
-    const handleSelectPage = (e: ChangeEvent<HTMLElement>) => {
+    const handleSelectPage = (e: React.ChangeEvent<HTMLElement>) => {
         const target = e.target as HTMLSelectElement;
         setCurrentPage(+target.value);
     };
@@ -160,9 +188,18 @@ const USERTABLE = () => {
     const thead = data().headers.map((element, id) => {
         return (
             <TableCell key={element.name}>
-                <div>
+                <button
+                    id={`btn${element.name}`}
+                    aria-controls={
+                        openHeader ? `btnMenu${element.name}` : undefined
+                    }
+                    aria-haspopup="true"
+                    aria-expanded={openHeader ? "true" : undefined}
+                    onClick={handleHeaderClick}
+                    className="filter"
+                >
                     <span>{element.name}</span>
-                    <button className="filter">
+                    <div className="filter">
                         <svg
                             width="16"
                             height="16"
@@ -175,8 +212,21 @@ const USERTABLE = () => {
                                 fill="#545F7D"
                             />
                         </svg>
-                    </button>
-                </div>
+                    </div>
+                </button>
+                <Menu
+                    id={`btnMenu${element.name}`}
+                    anchorEl={anchorHeaderEl}
+                    open={openHeader}
+                    onClose={handleHeaderClose}
+                    MenuListProps={{
+                        "aria-labelledby": `btnMenu${element.name}`,
+                    }}
+                >
+                    <MenuItem disableRipple={true}>
+                        <Form handleHeaderClose={handleHeaderClose} />
+                    </MenuItem>
+                </Menu>
             </TableCell>
         );
     });
@@ -212,7 +262,45 @@ const USERTABLE = () => {
                 {/* action button  */}
                 <TableCell>
                     <div className="table__action">
-                        <img src={action} alt="action" />
+                        <button
+                            id={`btn${element.id}`}
+                            aria-controls={
+                                openMenu ? `btnMenu${element.id}` : undefined
+                            }
+                            aria-haspopup="true"
+                            aria-expanded={openMenu ? "true" : undefined}
+                            onClick={handleDropDownClick}
+                        >
+                            <img src={action} alt="action" />
+                        </button>
+                        <Menu
+                            id={`btnMenu${element.id}`}
+                            anchorEl={anchorEl}
+                            open={openMenu}
+                            onClose={handleDropDownClose}
+                            MenuListProps={{
+                                "aria-labelledby": `btnMenu${element.id}`,
+                            }}
+                        >
+                            <MenuItem onClick={handleDropDownClose}>
+                                <div className="Menu__list__item">
+                                    <img src={eye} alt="View Details" />
+                                    <span>View Details</span>
+                                </div>
+                            </MenuItem>
+                            <MenuItem onClick={handleDropDownClose}>
+                                <div className="Menu__list__item">
+                                    <img src={yeetuser} alt="Blacklist User" />
+                                    <span>Blacklist User</span>
+                                </div>
+                            </MenuItem>
+                            <MenuItem onClick={handleDropDownClose}>
+                                <div className="Menu__list__item">
+                                    <img src={unyeetuser} alt="Activate User" />
+                                    <span>Activate User</span>
+                                </div>
+                            </MenuItem>
+                        </Menu>
                     </div>
                 </TableCell>
             </TableRow>
