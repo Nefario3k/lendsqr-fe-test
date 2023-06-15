@@ -2,7 +2,8 @@ import { useEffect, useState, ChangeEvent } from "react";
 import Pagination from "@mui/material/Pagination";
 import action from "../../assets/svg/action.svg";
 import { setDate, sortPagination } from "../../util/User";
-import Loading from "../../components/Loading";
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
 import IUser from "../../interface/IUser";
 
 // mui
@@ -68,8 +69,35 @@ const USERTABLE = () => {
         setCurrentPage(value);
     };
 
+    const loaders = () => {
+        var load = [];
+        for (var i = 0; i < 17; i++) {
+            load.push(
+                <Skeleton
+                    key={i + 2323232424}
+                    animation="wave"
+                    variant="rounded"
+                    width="100%"
+                    height={60}
+                />
+            );
+        }
+        return load;
+    };
+
     if (loading) {
-        return <Loading />;
+        return (
+            <Stack spacing={3}>
+                <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="100%"
+                    height={60}
+                    style={{ marginTop: "2rem" }}
+                />
+                {loaders()}{" "}
+            </Stack>
+        );
     }
 
     // DATA
@@ -131,69 +159,63 @@ const USERTABLE = () => {
     // header
     const thead = data().headers.map((element, id) => {
         return (
-            <>
-                <TableCell key={id + 233223233}>
-                    <div>
-                        <span>{element.name}</span>
-                        <button className="filter">
-                            <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M6.22222 13.3333H9.77778V11.5555H6.22222V13.3333ZM0 2.66666V4.44443H16V2.66666H0ZM2.66667 8.88888H13.3333V7.1111H2.66667V8.88888Z"
-                                    fill="#545F7D"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </TableCell>
-            </>
+            <TableCell key={element.name}>
+                <div>
+                    <span>{element.name}</span>
+                    <button className="filter">
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6.22222 13.3333H9.77778V11.5555H6.22222V13.3333ZM0 2.66666V4.44443H16V2.66666H0ZM2.66667 8.88888H13.3333V7.1111H2.66667V8.88888Z"
+                                fill="#545F7D"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </TableCell>
         );
     });
 
     // body
     const tbody = users.slice(lowRange, highRange).map((element) => {
         return (
-            <>
-                <TableRow key={element.id + 233424}>
-                    {/* organization name  */}
-                    <TableCell>{element.orgName}</TableCell>
-                    {/* username  */}
-                    <TableCell>{element.userName}</TableCell>
-                    {/* email  */}
-                    <TableCell>
-                        <a href={`mailto:${element.email}`}>{element.email}</a>
-                    </TableCell>
-                    {/* phoneNumber */}
-                    <TableCell>
-                        <a href={`tel:${element.phoneNumber}`}>
-                            {element.phoneNumber}
-                        </a>
-                    </TableCell>
-                    {/* date  */}
-                    <TableCell>{setDate(element.createdAt)}</TableCell>
-                    {/* status  */}
-                    <TableCell
-                        className={`chip ${
-                            element.status ? element.status : "inactive"
-                        }`}
-                    >
-                        <span>
-                            {element.status ? element.status : "inactive"}
-                        </span>
-                    </TableCell>
-                    {/* action button  */}
-                    <TableCell>
-                        <div className="table__action">
-                            <img src={action} alt="action" />
-                        </div>
-                    </TableCell>
-                </TableRow>
-            </>
+            <TableRow key={element.id + element.userName}>
+                {/* organization name  */}
+                <TableCell>{element.orgName}</TableCell>
+                {/* username  */}
+                <TableCell>{element.userName}</TableCell>
+                {/* email  */}
+                <TableCell>
+                    <a href={`mailto:${element.email}`}>{element.email}</a>
+                </TableCell>
+                {/* phoneNumber */}
+                <TableCell>
+                    <a href={`tel:${element.phoneNumber}`}>
+                        {element.phoneNumber}
+                    </a>
+                </TableCell>
+                {/* date  */}
+                <TableCell>{setDate(element.createdAt)}</TableCell>
+                {/* status  */}
+                <TableCell
+                    className={`chip ${
+                        element.status ? element.status : "inactive"
+                    }`}
+                >
+                    <span>{element.status ? element.status : "inactive"}</span>
+                </TableCell>
+                {/* action button  */}
+                <TableCell>
+                    <div className="table__action">
+                        <img src={action} alt="action" />
+                    </div>
+                </TableCell>
+            </TableRow>
         );
     });
 
@@ -220,7 +242,7 @@ const USERTABLE = () => {
                         onChange={(e) => handleSelectPage(e)}
                     >
                         {getPageNumber().map((pageNumber) => (
-                            <option key={pageNumber} value={pageNumber}>
+                            <option key={pageNumber + 34343} value={pageNumber}>
                                 {pageNumber}
                             </option>
                         ))}

@@ -28,9 +28,33 @@
         }
     }
 
-    .table__card {
-        .filterTable {
-            min-width: max-content;
+    // .table__card {
+    //     .filterTable {
+    //         min-width: max-content;
+    //     }
+    // }
+    .pagination {
+        flex-direction: column;
+        justify-content: center;
+        grid-gap: 50px;
+        .right {
+            button {
+                &.ctrl {
+                    svg {
+                        width: 4rem;
+                        height: 4rem;
+                    }
+                }
+            }
+            ul {
+                grid-gap: 10px;
+
+                li {
+                    button {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
         }
     }
 }
