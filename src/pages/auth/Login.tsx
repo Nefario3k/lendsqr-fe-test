@@ -1,7 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import * as React from "react";
 import LoginSvg from "../../assets/svg/login.svg";
 import LogoSvg from "../../assets/svg/sizedLogo.svg";
 const Login = () => {
+    let navigate = useNavigate();
+    const [formInput, setFormInput] = React.useState({
+        email: "",
+        password: "",
+    });
+    // handle form submission
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+        navigate("/dashboard/users");
+    };
+
+    const updateForm = (e: any) => {
+        setFormInput((previousInput) => {
+            const name = e.target.name;
+            const values = e.target.value;
+            return { ...previousInput, [name]: values };
+        });
+    };
     return (
         <section className="auth">
             <div className="row">
@@ -15,7 +34,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="col-12 col-md-6 auth__content d-flex justify-content-center align-items-center">
-                    <form className="content__login">
+                    <form onSubmit={handleSubmit} className="content__login">
                         <div className=" d-md-none d-block image__logo">
                             <img src={LogoSvg} alt="Logo" />
                         </div>
@@ -26,10 +45,24 @@ const Login = () => {
                             </p>
                         </header>
                         <div className="login__inputs">
-                            <input type="email" required placeholder="email" />
+                            <input
+                                onChange={(e) => {
+                                    updateForm(e);
+                                }}
+                                value={formInput.email}
+                                name="email"
+                                type="email"
+                                required
+                                placeholder="email"
+                            />
                         </div>
                         <div className="login__inputs relative">
                             <input
+                                onChange={(e) => {
+                                    updateForm(e);
+                                }}
+                                value={formInput.password}
+                                name="password"
                                 type="password"
                                 required
                                 placeholder="password"
@@ -40,7 +73,10 @@ const Login = () => {
                         </div>
 
                         <Link to="/">Forgot PASSWORD?</Link>
-                        <button className="login__submit d-flex justify-center align-items-center text-center">
+                        <button
+                            type="submit"
+                            className="login__submit d-flex justify-center align-items-center text-center"
+                        >
                             <span>log in</span>
                         </button>
                     </form>

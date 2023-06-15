@@ -27,7 +27,7 @@ import Form from "./TableForm";
 const USERTABLE = () => {
     const [users, setUsers] = React.useState<IUser[]>([]);
     const [loading, setLoading] = React.useState(false);
-    const USERPERPAGE = 10;
+    const [USERPERPAGE, setUSERPERPAGE] = React.useState(10);
     const [currentPage, setCurrentPage] = React.useState(1);
     const [lowRange, highRange] = sortPagination(currentPage, USERPERPAGE);
     const handleButtonNavigation = (dir: string) => {
@@ -61,6 +61,12 @@ const USERTABLE = () => {
         setAnchorHeaderEl(null);
     };
 
+    const handleUserView = (e: React.ChangeEvent<HTMLElement>) => {
+        const target = e.target as HTMLSelectElement;
+        setUSERPERPAGE(Number(target.value));
+        setCurrentPage(1);
+    };
+
     React.useEffect(() => {
         const getUsers = async () => {
             setLoading(true);
@@ -75,20 +81,20 @@ const USERTABLE = () => {
                 .catch((err) => console.log(err));
         };
         getUsers();
-    }, []);
+    }, [USERPERPAGE, currentPage]);
 
     function getPageNumber() {
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(users.length / USERPERPAGE); i++) {
-            pageNumbers.push(i);
-        }
+        const pageNumbers = [5, 10, 15, 20];
+        // for (let i = 1; i <= Math.ceil(users.length / USERPERPAGE); i++) {
+        //     pageNumbers.push(i);
+        // }
         return pageNumbers;
     }
 
-    const handleSelectPage = (e: React.ChangeEvent<HTMLElement>) => {
-        const target = e.target as HTMLSelectElement;
-        setCurrentPage(+target.value);
-    };
+    // const handleSelectPage = (e: React.ChangeEvent<HTMLElement>) => {
+    //     const target = e.target as HTMLSelectElement;
+    //     setCurrentPage(+target.value);
+    // };
 
     const handlePageClick = (
         event: React.ChangeEvent<unknown>,
@@ -326,8 +332,8 @@ const USERTABLE = () => {
                     <select
                         name="paginate"
                         id="paginate"
-                        value={currentPage}
-                        onChange={(e) => handleSelectPage(e)}
+                        value={USERPERPAGE}
+                        onChange={(e) => handleUserView(e)}
                     >
                         {getPageNumber().map((pageNumber) => (
                             <option key={pageNumber + 34343} value={pageNumber}>
@@ -335,7 +341,7 @@ const USERTABLE = () => {
                             </option>
                         ))}
                     </select>
-                    <span>out of 100</span>
+                    <span>out of {users.length}</span>
                 </div>
                 <div className="right">
                     {/* control left  */}
@@ -367,7 +373,7 @@ const USERTABLE = () => {
                     </button>
                     {/* pagination  */}
                     <Pagination
-                        count={USERPERPAGE}
+                        count={Math.ceil(users.length / USERPERPAGE)}
                         page={currentPage}
                         onChange={handlePageClick}
                         size="small"

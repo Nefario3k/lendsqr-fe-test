@@ -5,10 +5,11 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Pathlist from "./PathList";
 import logout from "../../assets/svg/icons/logout.svg";
 const Panel = (props: any) => {
+    let navigate = useNavigate();
     const location = useLocation().pathname;
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -232,7 +233,11 @@ const Panel = (props: any) => {
                 {/* logout  */}
                 <div>
                     <ul className="logout">
-                        <li>
+                        <li
+                            onClick={() => {
+                                navigate("/login");
+                            }}
+                        >
                             <NavLink
                                 className="panel__link d-flex align-items-center w-100"
                                 to="/"
