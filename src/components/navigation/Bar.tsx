@@ -1,14 +1,43 @@
+import * as React from "react";
 import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import LogoSvg from "../../assets/svg/sizedLogo.svg";
 import TextLogo from "../../assets/svg/textLogo.svg";
 import Avatar from "../../assets/images/temp/avatar.png";
-import { useState, useEffect } from "react";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
 const Bar = (props: any) => {
     var currentScrollPosition = window.scrollY;
-    const [domHeight, setDomHeight] = useState(currentScrollPosition);
-    const [scrollPosition] = useState(0);
-    useEffect(() => {
+    const [domHeight, setDomHeight] = React.useState(currentScrollPosition);
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef<HTMLButtonElement>(null);
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+    const handleClose = (event: Event | React.SyntheticEvent) => {
+        if (
+            anchorRef.current &&
+            anchorRef.current.contains(event.target as HTMLElement)
+        ) {
+            return;
+        }
+
+        setOpen(false);
+    };
+    function handleListKeyDown(event: React.KeyboardEvent) {
+        if (event.key === "Tab") {
+            event.preventDefault();
+            setOpen(false);
+        } else if (event.key === "Escape") {
+            setOpen(false);
+        }
+    }
+    const [scrollPosition] = React.useState(0);
+    React.useEffect(() => {
         window.addEventListener("scroll", () => {
             var currentScrollPosition = window.scrollY;
 
@@ -19,6 +48,16 @@ const Bar = (props: any) => {
             }
         });
     }, []);
+
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+    React.useEffect(() => {
+        if (prevOpen.current === true && open === false) {
+            anchorRef.current!.focus();
+        }
+
+        prevOpen.current = open;
+    }, [open]);
     return (
         <>
             <AppBar
@@ -141,7 +180,17 @@ const Bar = (props: any) => {
                                 />
                             </svg>
                         </button>
-                        <button className="right__dropDown d-flex align-items-center justify-content-between">
+                        <button
+                            ref={anchorRef}
+                            id="composition-button"
+                            aria-controls={
+                                open ? "composition-menu" : undefined
+                            }
+                            aria-expanded={open ? "true" : undefined}
+                            aria-haspopup="true"
+                            onClick={handleToggle}
+                            className="right__dropDown d-flex align-items-center justify-content-between"
+                        >
                             <div className="dropDown__avatar">
                                 <img src={Avatar} alt="avatar" />
                             </div>
@@ -163,6 +212,49 @@ const Bar = (props: any) => {
                                 </svg>
                             </div>
                         </button>
+                        <Popper
+                            open={open}
+                            anchorEl={anchorRef.current}
+                            role={undefined}
+                            placement="top-end"
+                            transition
+                            disablePortal
+                        >
+                            {({ TransitionProps, placement }) => (
+                                <Grow
+                                    {...TransitionProps}
+                                    style={{
+                                        transformOrigin:
+                                            placement === "bottom-start"
+                                                ? "left top"
+                                                : "left bottom",
+                                    }}
+                                >
+                                    <Paper>
+                                        <ClickAwayListener
+                                            onClickAway={handleClose}
+                                        >
+                                            <MenuList
+                                                autoFocusItem={open}
+                                                id="composition-menu"
+                                                aria-labelledby="composition-button"
+                                                onKeyDown={handleListKeyDown}
+                                            >
+                                                <MenuItem onClick={handleClose}>
+                                                    Profile
+                                                </MenuItem>
+                                                <MenuItem onClick={handleClose}>
+                                                    My account
+                                                </MenuItem>
+                                                <MenuItem onClick={handleClose}>
+                                                    Logout
+                                                </MenuItem>
+                                            </MenuList>
+                                        </ClickAwayListener>
+                                    </Paper>
+                                </Grow>
+                            )}
+                        </Popper>
                     </div>
                 </nav>
             </AppBar>

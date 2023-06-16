@@ -288,6 +288,8 @@ label {
     .right__notification,
     .userName,
     .dropArrow {
-        display: block !important;
+        &.d-none {
+            display: block !important;
+        }
     }
 }

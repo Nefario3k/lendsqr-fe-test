@@ -12,7 +12,7 @@ import ErrorLayout from "./layouts/Error";
 
 // pages
 import Dashboard from "./pages/Dashboard";
-import Users from "./pages/users/Users";
+import Users from "./pages/users/Index";
 import User from "./pages/users/User";
 
 // error page

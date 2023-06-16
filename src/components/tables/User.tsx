@@ -2,12 +2,12 @@ import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import action from "../../assets/svg/action.svg";
 import { setDate, sortPagination } from "../../util/User";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 import IUser from "../../interface/IUser";
 
 // mui
 
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -23,6 +23,7 @@ import eye from "../../assets/svg/menu/eye.svg";
 import yeetuser from "../../assets/svg/menu/yeetuser.svg";
 import unyeetuser from "../../assets/svg/menu/unyeetuser.svg";
 import Form from "./TableForm";
+import { Link } from "react-router-dom";
 
 const USERTABLE = () => {
     const [users, setUsers] = React.useState<IUser[]>([]);
@@ -84,7 +85,7 @@ const USERTABLE = () => {
     }, [USERPERPAGE, currentPage]);
 
     function getPageNumber() {
-        const pageNumbers = [5, 10, 15, 20];
+        const pageNumbers = [5, 10, 15, 20, 25];
         // for (let i = 1; i <= Math.ceil(users.length / USERPERPAGE); i++) {
         //     pageNumbers.push(i);
         // }
@@ -105,7 +106,7 @@ const USERTABLE = () => {
 
     const loaders = () => {
         var load = [];
-        for (var i = 0; i < 17; i++) {
+        for (var i = 0; i < USERPERPAGE; i++) {
             load.push(
                 <Skeleton
                     key={i + 2323232424}
@@ -242,7 +243,11 @@ const USERTABLE = () => {
         return (
             <TableRow key={element.id + element.userName}>
                 {/* organization name  */}
-                <TableCell>{element.orgName}</TableCell>
+                <TableCell>
+                    <Link to={`/dashboard/user/${element.id}`}>
+                        {element.orgName}
+                    </Link>
+                </TableCell>
                 {/* username  */}
                 <TableCell>{element.userName}</TableCell>
                 {/* email  */}
@@ -289,10 +294,12 @@ const USERTABLE = () => {
                             }}
                         >
                             <MenuItem onClick={handleDropDownClose}>
-                                <div className="Menu__list__item">
-                                    <img src={eye} alt="View Details" />
-                                    <span>View Details</span>
-                                </div>
+                                <Link to={`/dashboard/user/${element.id}`}>
+                                    <div className="Menu__list__item">
+                                        <img src={eye} alt="View Details" />
+                                        <span>View Details</span>
+                                    </div>
+                                </Link>
                             </MenuItem>
                             <MenuItem onClick={handleDropDownClose}>
                                 <div className="Menu__list__item">
