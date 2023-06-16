@@ -49,9 +49,9 @@ To run the app locally, you need to have [Node.js](https://nodejs.org/en/) and [
 
 -   [To top](#overview)
 
-![Login - Home](.src/assets/images/3.png)
-![Users - Home](.src/assets/images/2.png)
-![User - Home](.src/assets/images/1.png)
+![Login - Home](./src/assets/images/3.png)
+![Users - Home](./src/assets/images/2.png)
+![User - Home](./src/assets/images/1.png)
 
 -   [To top](#overview)
 
