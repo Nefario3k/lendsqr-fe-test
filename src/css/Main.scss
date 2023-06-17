@@ -134,7 +134,7 @@ section.auth {
 
 // default layout, panel and bar styles
 // bar
-.MuiPaper-root-MuiAppBar-root {
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorTransparent {
     box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04) !important;
     width: 100% !important;
     height: 10rem !important;
@@ -455,6 +455,10 @@ main.page__content {
     border-radius: 0 !important;
     box-shadow: none !important;
 }
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiTableContainer-root {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
 
 .table__card {
     padding: 30px;
@@ -569,7 +573,7 @@ main.page__content {
 }
 
 // table dropdown
-.MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+.MuiPaper-root.MuiMenu-paper.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper {
     background: #ffffff !important;
     border: 1px solid rgba(84, 95, 125, 0.04) !important;
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04) !important;
