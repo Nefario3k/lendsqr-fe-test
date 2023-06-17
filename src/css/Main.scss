@@ -134,7 +134,7 @@ section.auth {
 
 // default layout, panel and bar styles
 // bar
-.css-10jggh8-MuiPaper-root-MuiAppBar-root {
+.MuiPaper-root-MuiAppBar-root {
     box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04) !important;
     width: 100% !important;
     height: 10rem !important;
@@ -291,7 +291,7 @@ menu.panel {
             height: auto;
             margin-bottom: 40px;
             display: block;
-            & + .css-advny6-MuiPopper-root.MuiPopper-root {
+            & + .MuiPopper-root.MuiPopper-root {
                 // padding: 0;
                 width: 100% !important;
             }
@@ -451,7 +451,7 @@ main.page__content {
 }
 
 // filter table
-.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+.MuiPaper-root-MuiTableContainer-root {
     border-radius: 0 !important;
     box-shadow: none !important;
 }
@@ -569,7 +569,7 @@ main.page__content {
 }
 
 // table dropdown
-.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+.MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
     background: #ffffff !important;
     border: 1px solid rgba(84, 95, 125, 0.04) !important;
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04) !important;
