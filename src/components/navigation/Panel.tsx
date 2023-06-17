@@ -11,7 +11,6 @@ import logout from "../../assets/svg/icons/logout.svg";
 const Panel = (props: any) => {
     let navigate = useNavigate();
     const location = useLocation().pathname;
-    console.log(location);
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
     const handleToggle = () => {

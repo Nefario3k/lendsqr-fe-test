@@ -16,7 +16,6 @@ const User = () => {
         // get user or make REQUEST
         const getUser = async () => {
             const userId = `user-${id}`;
-            // console.log(userId)
             const storedUsersString = localStorage.getItem("users");
             const storedUsersMap = storedUsersString
                 ? new Map(JSON.parse(storedUsersString))
